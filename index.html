@@ -32,11 +32,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 20, 28, 0.5);
+            background: rgba(10, 12, 18, 0.55);
             z-index: -2;
         }
 
-        /* ── 左右のシャフト風・赤文字演出フレーム ── */
+        /* ── 左右のシャフト風・縦書きフレーム ── */
         .side-frame {
             position: fixed;
             top: 0;
@@ -63,7 +63,7 @@
             letter-spacing: 0.3em;
             font-size: 0.85rem;
             color: #ef4444;
-            text-shadow: 0 0 8px rgba(185, 28, 28, 0.6);
+            text-shadow: 0 0 8px rgba(185, 28, 28, 0.7);
             line-height: 1.4;
         }
 
@@ -73,6 +73,39 @@
             }
         }
 
+        /* ── 背面に滲む不吉な詩の演出 ── */
+        .bg-poem-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 900px;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-around;
+            padding: 40px 0;
+        }
+        .poem-col {
+            writing-mode: vertical-rl;
+            font-family: "Yu Mincho", "游明朝", "Hiragino Mincho ProN", serif;
+            color: #dc2626;
+            text-shadow: 0 0 12px rgba(220, 38, 38, 0.8), 0 0 25px rgba(153, 27, 27, 0.6);
+            white-space: nowrap;
+            filter: blur(0.6px);
+            user-select: none;
+        }
+        
+        /* フォントサイズや透明度を不揃いにして不吉感を強調 */
+        .poem-col:nth-child(1) { font-size: 1.8rem; letter-spacing: 0.35em; opacity: 0.22; margin-top: -30px; }
+        .poem-col:nth-child(2) { font-size: 1.3rem; letter-spacing: 0.5em;  opacity: 0.15; margin-top: 60px;  }
+        .poem-col:nth-child(3) { font-size: 2.2rem; letter-spacing: 0.25em; opacity: 0.25; margin-top: -80px; }
+        .poem-col:nth-child(4) { font-size: 1.5rem; letter-spacing: 0.4em;  opacity: 0.18; margin-top: 40px;  }
+        .poem-col:nth-child(5) { font-size: 1.9rem; letter-spacing: 0.3em;  opacity: 0.20; margin-top: -10px; }
+
         /* ── メインコンテンツ ── */
         .container {
             width: 100%;
@@ -80,30 +113,6 @@
             position: relative;
             z-index: 1;
         }
-
-        /* タブ背景に敷き詰める巨大赤文字演出 */
-        .bg-text-overlay {
-            position: absolute;
-            top: 120px;
-            left: -20px;
-            right: -20px;
-            bottom: 60px;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-            display: flex;
-            justify-content: space-around;
-            opacity: 0.18;
-        }
-        .bg-text-column {
-            writing-mode: vertical-rl;
-            font-size: 1.6rem;
-            letter-spacing: 0.4em;
-            color: #f87171;
-            text-shadow: 0 0 10px #b91c1c;
-            white-space: nowrap;
-        }
-
         header {
             text-align: center;
             margin-bottom: 48px;
@@ -120,7 +129,7 @@
         }
         .highlight-red {
             color: #dc2626;
-            text-shadow: 0 0 12px rgba(220, 38, 38, 0.8);
+            text-shadow: 0 0 12px rgba(220, 38, 38, 0.9);
         }
         .subtitle {
             font-size: 0.75rem;
@@ -138,15 +147,15 @@
             display: block;
             text-decoration: none;
             background: rgba(10, 15, 25, 0.45);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             border-top: 1px solid rgba(255, 255, 255, 0.15);
             border-bottom: 1px solid rgba(255, 255, 255, 0.15);
             padding: 18px 16px;
             transition: all 0.3s ease;
         }
         .link-card:hover {
-            background: rgba(30, 15, 20, 0.65);
+            background: rgba(30, 12, 18, 0.65);
             border-color: rgba(220, 38, 38, 0.5);
             padding-left: 22px;
         }
@@ -201,14 +210,16 @@
         <div class="side-text">求メ追イ抜キ貫キ給ヘト 申スコトヲ求メント 畏ミ畏ミ申ス</div>
     </aside>
 
-    <div class="container">
-        <!-- タブ背面に敷き詰める背景赤文字 -->
-        <div class="bg-text-overlay">
-            <div class="bg-text-column">傾ゲテモ畏メ黒羽ノ大神世ノ空ノ下ニ消エル世ノ歪ミ</div>
-            <div class="bg-text-column">禊ギ祓ヘ給イシ時ニ成リマセル単一ノ魂諸々ノ禍事罰穢レ</div>
-            <div class="bg-text-column">アラムヲバ求メ追イ抜キ貫キ給ヘト申スコトヲ求メント畏ミ畏ミ申ス</div>
-        </div>
+    <!-- 背景に不規則に滲む詩 -->
+    <div class="bg-poem-container">
+        <div class="poem-col">幽玄な大地は砂状の楼閣と化し 勇敢な戦士は時に溶かされた</div>
+        <div class="poem-col">今宵の夜は闇よりも深く 神々の血は海よりも苦く</div>
+        <div class="poem-col">かくして高千穂は崩れゆく その様は世の終わりそのものであり</div>
+        <div class="poem-col">ついに砂の子は黄泉へ去り 明日は塵の子のものとなる</div>
+        <div class="poem-col">この記録が残らんことを望み 陰鬱な語り手に授ける</div>
+    </div>
 
+    <div class="container">
         <header>
             <h1 class="title">暮<span class="highlight-red">葉</span>畏啓 活動場所</h1>
             <p class="subtitle">PORTFOLIO / INDEX</p>
