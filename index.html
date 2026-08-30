@@ -18,7 +18,7 @@
             justify-content: center;
             align-items: center;
             padding: 60px 20px;
-            background-image: url('IMG_2774.jpeg');
+            background-image: url('IMG_2331.jpeg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -32,11 +32,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 20, 28, 0.45);
-            z-index: -1;
+            background: rgba(15, 20, 28, 0.5);
+            z-index: -2;
         }
 
-        /* ── 左右のシャフト風・縦書き演出フレーム ── */
+        /* ── 左右のシャフト風・赤文字演出フレーム ── */
         .side-frame {
             position: fixed;
             top: 0;
@@ -52,22 +52,21 @@
         }
         .side-left {
             left: 15px;
-            border-right: 1px solid rgba(255, 255, 255, 0.15);
+            border-right: 1px solid rgba(220, 38, 38, 0.3);
         }
         .side-right {
             right: 15px;
-            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(220, 38, 38, 0.3);
         }
         .side-text {
             writing-mode: vertical-rl;
             letter-spacing: 0.3em;
-            font-size: 0.78rem;
-            color: rgba(241, 245, 249, 0.55);
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+            font-size: 0.85rem;
+            color: #ef4444;
+            text-shadow: 0 0 8px rgba(185, 28, 28, 0.6);
             line-height: 1.4;
         }
 
-        /* スマホ等の画面（幅900px未満）では左右演出を自動消去し、タブのみ表示 */
         @media (max-width: 900px) {
             .side-frame {
                 display: none;
@@ -81,6 +80,30 @@
             position: relative;
             z-index: 1;
         }
+
+        /* タブ背景に敷き詰める巨大赤文字演出 */
+        .bg-text-overlay {
+            position: absolute;
+            top: 120px;
+            left: -20px;
+            right: -20px;
+            bottom: 60px;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-around;
+            opacity: 0.18;
+        }
+        .bg-text-column {
+            writing-mode: vertical-rl;
+            font-size: 1.6rem;
+            letter-spacing: 0.4em;
+            color: #f87171;
+            text-shadow: 0 0 10px #b91c1c;
+            white-space: nowrap;
+        }
+
         header {
             text-align: center;
             margin-bottom: 48px;
@@ -94,6 +117,10 @@
             color: #ffffff;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.8);
             margin-bottom: 12px;
+        }
+        .highlight-red {
+            color: #dc2626;
+            text-shadow: 0 0 12px rgba(220, 38, 38, 0.8);
         }
         .subtitle {
             font-size: 0.75rem;
@@ -110,7 +137,7 @@
         .link-card {
             display: block;
             text-decoration: none;
-            background: rgba(10, 15, 25, 0.35);
+            background: rgba(10, 15, 25, 0.45);
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             border-top: 1px solid rgba(255, 255, 255, 0.15);
@@ -119,8 +146,8 @@
             transition: all 0.3s ease;
         }
         .link-card:hover {
-            background: rgba(20, 28, 45, 0.55);
-            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(30, 15, 20, 0.65);
+            border-color: rgba(220, 38, 38, 0.5);
             padding-left: 22px;
         }
         .card-header {
@@ -138,9 +165,9 @@
         }
         .card-arrow {
             font-size: 0.85rem;
-            color: #e2e8f0;
+            color: #ef4444;
             font-family: sans-serif;
-            opacity: 0.6;
+            opacity: 0.8;
         }
         .card-desc {
             font-size: 0.88rem;
@@ -163,21 +190,27 @@
 </head>
 <body>
 
-    <!-- 左側演出（祝詞 前半） -->
+    <!-- 左右の赤文字祝詞 -->
     <aside class="side-frame side-left">
         <div class="side-text">傾ゲテモ畏メ 黒羽ノ大神</div>
         <div class="side-text">世ノ空ノ下ニ消エル世ノ歪ミ 禊ギ祓ヘ給イシ時ニ</div>
     </aside>
 
-    <!-- 右側演出（祝詞 後半） -->
     <aside class="side-frame side-right">
         <div class="side-text">成リマセル単一ノ魂 諸々ノ禍事、罰、穢レ アラムヲバ</div>
         <div class="side-text">求メ追イ抜キ貫キ給ヘト 申スコトヲ求メント 畏ミ畏ミ申ス</div>
     </aside>
 
     <div class="container">
+        <!-- タブ背面に敷き詰める背景赤文字 -->
+        <div class="bg-text-overlay">
+            <div class="bg-text-column">傾ゲテモ畏メ黒羽ノ大神世ノ空ノ下ニ消エル世ノ歪ミ</div>
+            <div class="bg-text-column">禊ギ祓ヘ給イシ時ニ成リマセル単一ノ魂諸々ノ禍事罰穢レ</div>
+            <div class="bg-text-column">アラムヲバ求メ追イ抜キ貫キ給ヘト申スコトヲ求メント畏ミ畏ミ申ス</div>
+        </div>
+
         <header>
-            <h1 class="title">暮葉畏啓 活動場所</h1>
+            <h1 class="title">暮<span class="highlight-red">葉</span>畏啓 活動場所</h1>
             <p class="subtitle">PORTFOLIO / INDEX</p>
         </header>
 
