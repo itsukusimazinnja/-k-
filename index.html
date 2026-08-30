@@ -11,22 +11,23 @@
             padding: 0;
         }
         body {
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
-            color: #e2e8f0;
+            /* フォントを明朝体ベースに変更 */
+            font-family: "Yu Mincho", "游明朝", "Hiragino Mincho ProN", "MS PMincho", serif;
+            color: #f1f5f9;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
             
-            /* 背景画像の設定 */
-            background-image: url('IMG_2331.jpeg'); /* ここに画像ファイル名を指定します */
+            /* 背景画像の設定（過剰な黒塗りを解消） */
+            background-image: url('IMG_2331.jpeg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             position: relative;
         }
-        /* 背景を暗くして文字を読みやすくするオーバーレイ */
+        /* 背景画像を殺さない自然な薄暗さ */
         body::before {
             content: '';
             position: absolute;
@@ -34,7 +35,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(11, 15, 25, 0.65); /* 数値を上げるとより暗くなります (例: 0.8) */
+            background: rgba(15, 20, 28, 0.35);
             z-index: -1;
         }
         .container {
@@ -45,99 +46,88 @@
         }
         header {
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 24px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 48px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
         .title {
-            font-size: 1.8rem;
-            font-weight: 300;
-            letter-spacing: 0.25em;
-            color: #f8fafc;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 12px rgba(168, 85, 247, 0.4);
-            margin-bottom: 8px;
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.8);
+            margin-bottom: 12px;
         }
         .subtitle {
-            font-size: 0.8rem;
-            letter-spacing: 0.15em;
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
             color: #cbd5e1;
-            text-transform: uppercase;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+            font-family: sans-serif;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
         }
         .links-grid {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
         }
+        /* 重い「箱感」を消し、背景に溶け込ませるデザイン */
         .link-card {
             display: block;
             text-decoration: none;
-            /* カードの背景を濃くして視認性を高める */
-            background: rgba(15, 23, 42, 0.75); 
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 8px;
-            padding: 20px 24px;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        .link-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(180deg, #c084fc, #60a5fa);
-            opacity: 0.5;
-            transition: opacity 0.25s ease;
+            background: rgba(10, 15, 25, 0.35);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: none;
+            border-right: none;
+            padding: 18px 16px;
+            transition: all 0.3s ease;
         }
         .link-card:hover {
-            transform: translateY(-2px);
-            border-color: rgba(192, 132, 252, 0.4);
-            background: rgba(30, 41, 59, 0.85);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-        }
-        .link-card:hover::before {
-            opacity: 1;
+            background: rgba(20, 28, 45, 0.55);
+            border-color: rgba(255, 255, 255, 0.4);
+            padding-left: 22px;
         }
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .card-title {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             font-weight: 600;
             color: #ffffff;
-            letter-spacing: 0.05em;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+            letter-spacing: 0.1em;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.7);
         }
         .card-arrow {
-            font-size: 0.9rem;
-            color: #c084fc;
-            transition: transform 0.25s ease;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            font-family: sans-serif;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
         }
         .link-card:hover .card-arrow {
-            transform: translateX(4px);
+            opacity: 1;
         }
         .card-desc {
             font-size: 0.88rem;
-            color: #e2e8f0;
-            line-height: 1.6;
+            color: #f1f5f9;
+            line-height: 1.7;
             font-weight: 400;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+            letter-spacing: 0.03em;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 6px rgba(0, 0, 0, 0.8);
         }
         footer {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 50px;
             font-size: 0.75rem;
-            color: #94a3b8;
-            letter-spacing: 0.1em;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+            color: #cbd5e1;
+            letter-spacing: 0.15em;
+            font-family: sans-serif;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
         }
     </style>
 </head>
@@ -154,7 +144,7 @@
                     <span class="card-title">小説家になろう</span>
                     <span class="card-arrow">→</span>
                 </div>
-                <p class="card-desc">主に人の目を気にせずに書き殴った超長編の自伝、自分史と暮葉畏啓世界の大元となるオリジナル小説群＜怪異譚？ A.陰鬱な花が開いたのです。＞が目玉となっています。</p>
+                <p class="card-desc">主に人の目を気にせずに書き殴った超長編の自伝、自分史と暮葉畏啓世界の大元となるオリジナル小説群＜怪異譚？A.陰鬱な花が開いたのです。＞が目玉となっています。</p>
             </a>
 
             <a href="https://itsukusimazinnja.github.io/kuroha08/index.html" class="link-card" target="_blank" rel="noopener noreferrer">
