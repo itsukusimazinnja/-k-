@@ -11,7 +11,6 @@
             padding: 0;
         }
         body {
-            /* フォントを明朝体ベースに変更 */
             font-family: "Yu Mincho", "游明朝", "Hiragino Mincho ProN", "MS PMincho", serif;
             color: #f1f5f9;
             min-height: 100vh;
@@ -19,15 +18,13 @@
             justify-content: center;
             align-items: center;
             padding: 60px 20px;
-            
-            /* 背景画像の設定（過剰な黒塗りを解消） */
-            background-image: url('IMG_2774.jpeg');
+            background-image: url('IMG_2331.jpeg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             position: relative;
+            overflow-x: hidden;
         }
-        /* 背景画像を殺さない自然な薄暗さ */
         body::before {
             content: '';
             position: absolute;
@@ -35,12 +32,52 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 20, 28, 0.35);
+            background: rgba(15, 20, 28, 0.45);
             z-index: -1;
         }
+
+        /* ── 左右のシャフト風・縦書き演出フレーム ── */
+        .side-frame {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 110px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            padding: 40px 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .side-left {
+            left: 15px;
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .side-right {
+            right: 15px;
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .side-text {
+            writing-mode: vertical-rl;
+            letter-spacing: 0.3em;
+            font-size: 0.78rem;
+            color: rgba(241, 245, 249, 0.55);
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+            line-height: 1.4;
+        }
+
+        /* スマホ等の画面（幅900px未満）では左右演出を自動消去し、タブのみ表示 */
+        @media (max-width: 900px) {
+            .side-frame {
+                display: none;
+            }
+        }
+
+        /* ── メインコンテンツ ── */
         .container {
             width: 100%;
-            max-width: 680px;
+            max-width: 640px;
             position: relative;
             z-index: 1;
         }
@@ -70,7 +107,6 @@
             flex-direction: column;
             gap: 20px;
         }
-        /* 重い「箱感」を消し、背景に溶け込ませるデザイン */
         .link-card {
             display: block;
             text-decoration: none;
@@ -79,8 +115,6 @@
             -webkit-backdrop-filter: blur(4px);
             border-top: 1px solid rgba(255, 255, 255, 0.15);
             border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            border-left: none;
-            border-right: none;
             padding: 18px 16px;
             transition: all 0.3s ease;
         }
@@ -100,17 +134,13 @@
             font-weight: 600;
             color: #ffffff;
             letter-spacing: 0.1em;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.7);
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
         }
         .card-arrow {
             font-size: 0.85rem;
             color: #e2e8f0;
             font-family: sans-serif;
             opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-        .link-card:hover .card-arrow {
-            opacity: 1;
         }
         .card-desc {
             font-size: 0.88rem;
@@ -118,7 +148,7 @@
             line-height: 1.7;
             font-weight: 400;
             letter-spacing: 0.03em;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 6px rgba(0, 0, 0, 0.8);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
         }
         footer {
             text-align: center;
@@ -132,6 +162,19 @@
     </style>
 </head>
 <body>
+
+    <!-- 左側演出（祝詞 前半） -->
+    <aside class="side-frame side-left">
+        <div class="side-text">傾ゲテモ畏メ 黒羽ノ大神</div>
+        <div class="side-text">世ノ空ノ下ニ消エル世ノ歪ミ 禊ギ祓ヘ給イシ時ニ</div>
+    </aside>
+
+    <!-- 右側演出（祝詞 後半） -->
+    <aside class="side-frame side-right">
+        <div class="side-text">成リマセル単一ノ魂 諸々ノ禍事、罰、穢レ アラムヲバ</div>
+        <div class="side-text">求メ追イ抜キ貫キ給ヘト 申スコトヲ求メント 畏ミ畏ミ申ス</div>
+    </aside>
+
     <div class="container">
         <header>
             <h1 class="title">暮葉畏啓 活動場所</h1>
