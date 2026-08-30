@@ -36,7 +36,7 @@
             z-index: -2;
         }
 
-        /* ── 左右のシャフト風・縦書きフレーム ── */
+        /* ── 左右の縦書き祝詞フレーム（右→左の順で配置） ── */
         .side-frame {
             position: fixed;
             top: 0;
@@ -50,13 +50,15 @@
             pointer-events: none;
             z-index: 10;
         }
-        .side-left {
-            left: 15px;
-            border-right: 1px solid rgba(220, 38, 38, 0.3);
-        }
+        /* 1〜2列目を右側へ */
         .side-right {
             right: 15px;
             border-left: 1px solid rgba(220, 38, 38, 0.3);
+        }
+        /* 3〜4列目を左側へ */
+        .side-left {
+            left: 15px;
+            border-right: 1px solid rgba(220, 38, 38, 0.3);
         }
         .side-text {
             writing-mode: vertical-rl;
@@ -73,17 +75,17 @@
             }
         }
 
-        /* ── 最前面に重ねて配置する暗い黄色の詩 ── */
+        /* ── 最前面に被せる暗い黄色の詩（黒縁あり・位置を下げた状態） ── */
         .bg-poem-container {
             position: absolute;
-            top: 40px;
+            top: 100px; /* 位置を少し下へ調整 */
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
             max-width: 680px;
-            height: 90%;
-            pointer-events: none;
-            z-index: 5;
+            height: 85%;
+            pointer-events: none; /* 下のカードのクリックを妨げない */
+            z-index: 5; /* 最前面へ */
             overflow: hidden;
             display: flex;
             justify-content: space-around;
@@ -93,17 +95,18 @@
             writing-mode: vertical-rl;
             font-family: "Yu Mincho", "游明朝", "Hiragino Mincho ProN", serif;
             color: #d97706;
-            text-shadow: 0 0 8px rgba(180, 83, 9, 0.8), 0 0 18px rgba(120, 53, 15, 0.6);
+            /* 黒色の文字縁どり */
+            -webkit-text-stroke: 1px #000000;
+            text-shadow: 0 0 8px rgba(180, 83, 9, 0.8), 0 0 16px rgba(0, 0, 0, 0.9);
             white-space: nowrap;
-            filter: blur(0.4px);
             user-select: none;
         }
         
-        .poem-col:nth-child(1) { font-size: 1.15rem; letter-spacing: 0.25em; opacity: 0.45; margin-top: 10px; }
-        .poem-col:nth-child(2) { font-size: 0.98rem; letter-spacing: 0.35em; opacity: 0.38; margin-top: 50px; }
-        .poem-col:nth-child(3) { font-size: 1.20rem; letter-spacing: 0.20em; opacity: 0.50; margin-top: 0px; }
-        .poem-col:nth-child(4) { font-size: 1.05rem; letter-spacing: 0.30em; opacity: 0.40; margin-top: 40px; }
-        .poem-col:nth-child(5) { font-size: 1.10rem; letter-spacing: 0.22em; opacity: 0.45; margin-top: 20px; }
+        .poem-col:nth-child(1) { font-size: 1.15rem; letter-spacing: 0.25em; opacity: 0.55; margin-top: 10px; }
+        .poem-col:nth-child(2) { font-size: 0.98rem; letter-spacing: 0.35em; opacity: 0.48; margin-top: 50px; }
+        .poem-col:nth-child(3) { font-size: 1.20rem; letter-spacing: 0.20em; opacity: 0.60; margin-top: 0px; }
+        .poem-col:nth-child(4) { font-size: 1.05rem; letter-spacing: 0.30em; opacity: 0.50; margin-top: 40px; }
+        .poem-col:nth-child(5) { font-size: 1.10rem; letter-spacing: 0.22em; opacity: 0.55; margin-top: 20px; }
 
         /* ── メインコンテンツ ── */
         .container {
@@ -198,18 +201,19 @@
 </head>
 <body>
 
-    <!-- 左右の祝詞（漢字＋ひらがな表記） -->
-    <aside class="side-frame side-left">
+    <!-- 祝詞（右側：1列目・2列目） -->
+    <aside class="side-frame side-right">
         <div class="side-text">傾げても畏め 黒羽の大神</div>
         <div class="side-text">世の空の下に消える世の歪み 禊ぎ祓へ給いし時に</div>
     </aside>
 
-    <aside class="side-frame side-right">
+    <!-- 祝詞（左側：3列目・4列目） -->
+    <aside class="side-frame side-left">
         <div class="side-text">成りませる単一の魂 諸々の禍事、罰、穢れ あらむをば</div>
         <div class="side-text">求め追い抜き貫き給へと 申すことを求めんと 畏み畏み申す</div>
     </aside>
 
-    <!-- 最前面の詩 -->
+    <!-- 最前面の詩（黒縁付き・位置調整済み） -->
     <div class="bg-poem-container">
         <div class="poem-col">幽玄な大地は砂状の楼閣と化し 勇敢な戦士は時に溶かされた</div>
         <div class="poem-col">今宵の夜は闇よりも深く 神々の血は海よりも苦く</div>
