@@ -73,7 +73,7 @@
             }
         }
 
-        /* ── 背面に滲む暗い黄色の詩（サイズ・配置調整） ── */
+        /* ── 最前面に被せる暗い黄色の詩 ── */
         .bg-poem-container {
             position: absolute;
             top: 40px;
@@ -82,8 +82,8 @@
             width: 100%;
             max-width: 680px;
             height: 90%;
-            pointer-events: none;
-            z-index: -1;
+            pointer-events: none; /* リンククリックを阻害しないための指定 */
+            z-index: 5; /* カード（z-index:1）より全面へ移動 */
             overflow: hidden;
             display: flex;
             justify-content: space-around;
@@ -99,12 +99,12 @@
             user-select: none;
         }
         
-        /* フォントサイズを抑え、カード背後に収まるよう不規則に配置 */
-        .poem-col:nth-child(1) { font-size: 1.15rem; letter-spacing: 0.25em; opacity: 0.35; margin-top: 10px; }
-        .poem-col:nth-child(2) { font-size: 0.98rem; letter-spacing: 0.35em; opacity: 0.28; margin-top: 50px; }
-        .poem-col:nth-child(3) { font-size: 1.20rem; letter-spacing: 0.20em; opacity: 0.40; margin-top: 0px; }
-        .poem-col:nth-child(4) { font-size: 1.05rem; letter-spacing: 0.30em; opacity: 0.30; margin-top: 40px; }
-        .poem-col:nth-child(5) { font-size: 1.10rem; letter-spacing: 0.22em; opacity: 0.35; margin-top: 20px; }
+        /* 各列の配置とサイズ */
+        .poem-col:nth-child(1) { font-size: 1.15rem; letter-spacing: 0.25em; opacity: 0.45; margin-top: 10px; }
+        .poem-col:nth-child(2) { font-size: 0.98rem; letter-spacing: 0.35em; opacity: 0.38; margin-top: 50px; }
+        .poem-col:nth-child(3) { font-size: 1.20rem; letter-spacing: 0.20em; opacity: 0.50; margin-top: 0px; }
+        .poem-col:nth-child(4) { font-size: 1.05rem; letter-spacing: 0.30em; opacity: 0.40; margin-top: 40px; }
+        .poem-col:nth-child(5) { font-size: 1.10rem; letter-spacing: 0.22em; opacity: 0.45; margin-top: 20px; }
 
         /* ── メインコンテンツ ── */
         .container {
@@ -146,7 +146,6 @@
         .link-card {
             display: block;
             text-decoration: none;
-            /* タブ背景の透明度を上げて後ろの詩を透けやすく調整 */
             background: rgba(10, 12, 20, 0.25);
             backdrop-filter: blur(3px);
             -webkit-backdrop-filter: blur(3px);
@@ -211,7 +210,7 @@
         <div class="side-text">求メ追イ抜キ貫キ給ヘト 申スコトヲ求メント 畏ミ畏ミ申ス</div>
     </aside>
 
-    <!-- 背景に不規則に滲む暗黄色の詩 -->
+    <!-- 最前面に重ねて配置する不吉な詩 -->
     <div class="bg-poem-container">
         <div class="poem-col">幽玄な大地は砂状の楼閣と化し 勇敢な戦士は時に溶かされた</div>
         <div class="poem-col">今宵の夜は闇よりも深く 神々の血は海よりも苦く</div>
