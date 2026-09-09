@@ -30,7 +30,7 @@
             font-family: 'Shippori Mincho', "Yu Mincho", "游明朝", "Hiragino Mincho ProN", serif;
             color: var(--text-color);
             background-color: #111;
-            /* 背景写真（GitHub上の IMG_2774.jpeg を指定） */
+            /* 背景写真 */
             background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('IMG_2774.jpeg');
             background-size: cover;
             background-position: center;
@@ -82,15 +82,15 @@
             .side-frame { display: none; }
         }
 
-        /* ── 背景・画面いっぱいに配置する詩（暗い黄色の文字・黒縁） ── */
+        /* ── 背景の詩：ファーストビューを避けて下に配置 ── */
         .bg-poem-container {
             position: absolute;
-            top: 300px;
+            top: 85vh; /* 開始位置をファーストビューより下に移動 */
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
             max-width: 750px;
-            height: 80%;
+            height: 1000px;
             pointer-events: none;
             z-index: 1;
             overflow: hidden;
@@ -123,12 +123,13 @@
             z-index: 5;
         }
 
-        /* ファーストビュー */
+        /* ── ファーストビュー：ロゴを上寄りに変更 ── */
         .hero {
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start; /* 上寄せに変更 */
+            padding-top: 15vh;           /* 画面上部からの余白 */
             align-items: center;
             text-align: center;
             position: relative;
@@ -265,7 +266,7 @@
         <div class="side-text">成りませる単一の魂 諸々の禍事、罰、穢れ あらむをば</div>
     </aside>
 
-    <!-- 2. 中央付近に浮かぶ詩（暗い黄色の縦書き） -->
+    <!-- 2. 中央付近に浮かぶ詩（ファーストビューの下に配置） -->
     <div class="bg-poem-container">
         <div class="poem-col">この記録が残らんことを望み 陰鬱な語り手に授ける</div>
         <div class="poem-col">ついに砂の子は黄泉へ去り 明日は塵の子のものとなる</div>
@@ -279,7 +280,6 @@
 
         <!-- トップロゴ表示 -->
         <div class="hero">
-            <!-- GitHub上のロゴ画像名無題36_20260909200217.jpeg を指定 -->
             <img src="無題36_20260909202643.jpeg" alt="霧雨巡録社" class="site-logo">
             <p class="hero-sub">Together with the Drizzle</p>
             <div class="scroll-down">SCROLL</div>
@@ -296,7 +296,7 @@
             </div>
         </div>
 
-        <!-- main.html（活動場所ページ）への導線 -->
+        <!-- main.html への導線ボタン -->
         <div class="nav-section">
             <a href="main.html" class="main-entrance-card">
                 <div class="entrance-title">
