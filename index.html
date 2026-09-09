@@ -82,15 +82,15 @@
             .side-frame { display: none; }
         }
 
-        /* ── 背景の詩：ファーストビューを避けて下に配置 ── */
+        /* ── 背景の詩：位置を少し上に移動 ── */
         .bg-poem-container {
             position: absolute;
-            top: 85vh; /* 開始位置をファーストビューより下に移動 */
+            top: 50vh; /* 85vhから50vhに上へ引き上げ */
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
             max-width: 750px;
-            height: 1000px;
+            height: 700px; /* 下に伸びすぎないよう高さを指定 */
             pointer-events: none;
             z-index: 1;
             overflow: hidden;
@@ -123,13 +123,12 @@
             z-index: 5;
         }
 
-        /* ── ファーストビュー：ロゴを上寄りに変更 ── */
+        /* ── ファーストビュー ── */
         .hero {
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* 上寄せに変更 */
-            padding-top: 15vh;           /* 画面上部からの余白 */
+            justify-content: center; /* ロゴは元の位置（中央寄せ）に戻しました */
             align-items: center;
             text-align: center;
             position: relative;
@@ -266,7 +265,7 @@
         <div class="side-text">成りませる単一の魂 諸々の禍事、罰、穢れ あらむをば</div>
     </aside>
 
-    <!-- 2. 中央付近に浮かぶ詩（ファーストビューの下に配置） -->
+    <!-- 2. 中央付近に浮かぶ詩 -->
     <div class="bg-poem-container">
         <div class="poem-col">この記録が残らんことを望み 陰鬱な語り手に授ける</div>
         <div class="poem-col">ついに砂の子は黄泉へ去り 明日は塵の子のものとなる</div>
@@ -280,7 +279,7 @@
 
         <!-- トップロゴ表示 -->
         <div class="hero">
-            <img src="無題36_20260909202643.jpeg" alt="霧雨巡録社" class="site-logo">
+            <img src="無題36_20260909200217.jpeg" alt="霧雨巡録社" class="site-logo">
             <p class="hero-sub">Together with the Drizzle</p>
             <div class="scroll-down">SCROLL</div>
         </div>
