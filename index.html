@@ -82,15 +82,15 @@
             .side-frame { display: none; }
         }
 
-        /* ── 背景の詩：位置を少し上に移動 ── */
+        /* ── 背景の詩 ── */
         .bg-poem-container {
             position: absolute;
-            top: 50vh; /* 85vhから50vhに上へ引き上げ */
+            top: 50vh;
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
             max-width: 750px;
-            height: 700px; /* 下に伸びすぎないよう高さを指定 */
+            height: 700px;
             pointer-events: none;
             z-index: 1;
             overflow: hidden;
@@ -128,7 +128,7 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* ロゴは元の位置（中央寄せ）に戻しました */
+            justify-content: center;
             align-items: center;
             text-align: center;
             position: relative;
@@ -165,9 +165,9 @@
             50% { opacity: 0.9; transform: translateY(8px); }
         }
 
-        /* スクロール後の紹介文 */
+        /* ── スクロール後の紹介文（詩と被らないよう約8文字分下へ移動） ── */
         .intro-section {
-            padding: 80px 0 40px;
+            padding: 300px 0 40px; /* 130pxから300px（+170px分）へ広げて下へ退避 */
             text-align: center;
         }
 
