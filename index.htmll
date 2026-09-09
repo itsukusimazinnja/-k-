@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>霧雨巡録社</title>
     
-    <!-- Google Fonts: 明朝体 -->
+    <!-- Google Fonts: Shippori Mincho -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-overlay: rgba(10, 12, 15, 0.45); /* 写真の雰囲気を活かしつつ明度調整 */
-            --card-bg: rgba(15, 18, 22, 0.70);   /* 活動場所ページに合わせた半透明黒 */
-            --text-color: #e8ecef;
-            --accent-red: rgba(180, 50, 50, 0.8);
+            --bg-overlay: rgba(10, 12, 15, 0.45);
+            --card-bg: rgba(10, 12, 20, 0.40);
+            --text-color: #f1f5f9;
+            --accent-red: #ef4444;
             --border-color: rgba(255, 255, 255, 0.18);
         }
 
@@ -27,10 +27,10 @@
         }
 
         body {
-            font-family: 'Shippori Mincho', "Yu Mincho", "Hiragino Mincho ProN", serif;
+            font-family: 'Shippori Mincho', "Yu Mincho", "游明朝", "Hiragino Mincho ProN", serif;
             color: var(--text-color);
             background-color: #111;
-            /* 1枚目の背景写真（紅葉と山） */
+            /* 紅葉と瓦屋根の写真 */
             background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('IMG_2780.jpg');
             background-size: cover;
             background-position: center;
@@ -46,12 +46,7 @@
             transition: all 0.3s ease;
         }
 
-        a:hover {
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
-
-        /* 活動場所ページ風の縦書き装飾テキスト（背景左右） */
+        /* 左右の縦書きフレーム風装飾 */
         .side-text {
             position: fixed;
             top: 15%;
@@ -59,24 +54,24 @@
             font-size: 0.85em;
             color: var(--accent-red);
             letter-spacing: 0.3em;
-            opacity: 0.8;
+            opacity: 0.85;
             pointer-events: none;
             z-index: 1;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+            text-shadow: 0 0 8px rgba(185, 28, 28, 0.7);
         }
         .side-text.left { left: 3%; }
         .side-text.right { right: 3%; }
 
         /* コンテナ */
         .container {
-            max-width: 850px;
+            max-width: 700px;
             margin: 0 auto;
             padding: 0 20px;
             position: relative;
             z-index: 2;
         }
 
-        /* 1. ファーストビュー */
+        /* ファーストビュー */
         .hero {
             height: 100vh;
             display: flex;
@@ -87,28 +82,29 @@
             position: relative;
         }
 
-        /* 3枚目のロゴ画像 */
         .site-logo {
             max-width: 80%;
-            width: 480px;
+            width: 460px;
             height: auto;
             filter: drop-shadow(0 0 15px rgba(0,0,0,0.9));
             margin-bottom: 20px;
         }
 
         .hero-sub {
-            font-size: 0.9em;
-            color: #c0c8d0;
-            letter-spacing: 0.2em;
-            text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            letter-spacing: 0.25em;
+            font-family: sans-serif;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
         }
 
         .scroll-down {
             position: absolute;
-            bottom: 30px;
-            font-size: 0.8em;
+            bottom: 35px;
+            font-size: 0.75rem;
             letter-spacing: 0.25em;
             color: #aaa;
+            font-family: sans-serif;
             animation: fadeInOut 2.5s infinite;
         }
 
@@ -117,153 +113,133 @@
             50% { opacity: 0.9; transform: translateY(8px); }
         }
 
-        /* 2. スクロール時のキャッチコピー表示部分 */
+        /* スクロール後の紹介文 */
         .intro-section {
-            padding: 100px 0 60px;
+            padding: 80px 0 40px;
             text-align: center;
         }
 
         .catch-phrase {
-            font-size: 1.5em;
-            letter-spacing: 0.2em;
-            margin-bottom: 40px;
-            text-shadow: 0 0 12px rgba(0, 0, 0, 0.95);
+            font-size: 1.6em;
+            letter-spacing: 0.25em;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+            font-weight: 400;
         }
 
         .intro-box {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 35px;
-            backdrop-filter: blur(5px);
-            max-width: 650px;
-            margin: 0 auto;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            padding: 30px 25px;
             text-align: left;
-            font-size: 0.95em;
+            font-size: 0.92rem;
+            line-height: 2.1;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* 3. ナビゲーション・導線（活動場所ページ等へ） */
+        /* 単一のメイン導線ボタン */
         .nav-section {
-            padding: 60px 0 120px;
+            padding: 40px 0 100px;
         }
 
-        .nav-title {
+        .main-entrance-card {
+            display: block;
+            background: rgba(10, 12, 20, 0.35);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 28px 20px;
             text-align: center;
-            font-size: 1.1em;
-            letter-spacing: 0.25em;
-            margin-bottom: 35px;
-        }
-
-        .nav-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-        }
-
-        .nav-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 25px;
-            backdrop-filter: blur(5px);
-            text-align: center;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
             transition: all 0.3s ease;
             box-shadow: 0 5px 20px rgba(0,0,0,0.4);
         }
 
-        .nav-card:hover {
-            border-color: #ffffff;
-            transform: translateY(-4px);
-            background: rgba(25, 30, 38, 0.85);
+        .main-entrance-card:hover {
+            background: rgba(25, 12, 18, 0.55);
+            border-color: rgba(220, 38, 38, 0.6);
+            transform: translateY(-3px);
         }
 
-        .nav-card h3 {
-            font-size: 1.1em;
-            letter-spacing: 0.15em;
+        .entrance-title {
+            font-size: 1.25rem;
+            letter-spacing: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
             margin-bottom: 8px;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
         }
 
-        .nav-card p {
-            font-size: 0.8em;
-            color: #9aa4af;
+        .entrance-title span {
+            color: var(--accent-red);
+            margin-left: 8px;
+            font-size: 0.9em;
         }
 
-        /* クラシックリンク */
-        .classic-link {
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            font-size: 0.85em;
-            border-top: 1px dashed var(--border-color);
+        .entrance-desc {
+            font-size: 0.82rem;
+            color: #cbd5e1;
+            letter-spacing: 0.08em;
         }
 
         footer {
             text-align: center;
             padding: 30px 0;
-            font-size: 0.75em;
-            color: #777;
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            letter-spacing: 0.15em;
+            font-family: sans-serif;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
         }
 
-        @media (max-width: 768px) {
-            .side-text { display: none; } /* スマホ時は縦書き装飾を非表示 */
-            .catch-phrase { font-size: 1.2em; }
-            .intro-box { padding: 20px; }
+        @media (max-width: 900px) {
+            .side-text { display: none; }
+            .catch-phrase { font-size: 1.3em; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 2枚目画像の左右にあった縦書き詩文風の装飾 -->
     <div class="side-text left">世の空の下に消える世の歪み</div>
     <div class="side-text right">幽玄な大地は砂状の楼閣と化し</div>
 
     <div class="container">
 
-        <!-- ① トップ画像＆ロゴ -->
+        <!-- ① トップロゴ表示 -->
         <div class="hero">
-            <!-- 送ってもらったロゴ画像 -->
             <img src="無題36_20260909200217.png" alt="霧雨巡録社" class="site-logo">
             <p class="hero-sub">Together with the Drizzle</p>
             <div class="scroll-down">SCROLL</div>
         </div>
 
-        <!-- ② スクロール後のキャッチコピーエリア -->
+        <!-- ② スクロール後の文言 -->
         <div class="intro-section">
             <h2 class="catch-phrase">怪異と萌えの霧雨巡録社</h2>
             <div class="intro-box">
-                <!-- 文章はお兄ちゃんが後から自由に書き換えてな -->
                 <p>
-                    ここは同人サークル「霧雨巡録社」および暮葉畏啓の制作物・活動拠点を集約したサイトです。<br>
-                　　各種活動場所へはへは下記より移動できます。
+                    同人サークル「霧雨巡録社」および暮葉畏啓の制作物・活動拠点をまとめたポータルページです。<br>
+                    小説、制作物、各種SNS等の各コンテンツへは以下よりお入りください。
                 </p>
             </div>
         </div>
 
-        <!-- ③ 各ページへの導線（活動場所ページなど） -->
+        <!-- ③ main.html（活動場所ページ）への1本化した導線 -->
         <div class="nav-section">
-            <h2 class="nav-title">― INDEX ―</h2>
-            <div class="nav-grid">
-                
-                <!-- 2枚目の画像（活動場所ページ）へのリンク -->
-                <a href="activity.html" class="nav-card">
-                    <h3>活動場所</h3>
-                    <p>小説家になろう / note / pixiv / SNS 等</p>
-                </a>
-
-                <a href="#" class="nav-card">
-                    <h3>制作物・作品</h3>
-                    <p>小説・ノベルゲーム・評論・イラスト</p>
-                </a>
-
-            </div>
-
-            <!-- クラシック版へのリンク -->
-            <div class="classic-link">
-                <a href="./classic/index.html"クラシックへ →</a>
-            </div>
+            <a href="main.html" class="main-entrance-card">
+                <div class="entrance-title">
+                    各種活動場所へ <span>→</span>
+                </div>
+                <div class="entrance-desc">
+                    小説家になろう / 個人サイト / note / pixiv / SNS 等
+                </div>
+            </a>
         </div>
 
         <footer>
-            <p>&copy; 霧雨巡録社 / 暮葉畏啓</p>
+            <p>&copy; Together with the Drizzle</p>
         </footer>
 
     </div>
