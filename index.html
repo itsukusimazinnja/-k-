@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -165,9 +164,9 @@
             50% { opacity: 0.9; transform: translateY(8px); }
         }
 
-        /* ── スクロール後の紹介文（詩と被らないよう約8文字分下へ移動） ── */
+        /* ── スクロール後の紹介文 ── */
         .intro-section {
-            padding: 300px 0 40px; /* 130pxから300px（+170px分）へ広げて下へ退避 */
+            padding: 300px 0 40px;
             text-align: center;
         }
 
@@ -192,9 +191,12 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* main.html への導線ボタン */
+        /* ナビゲーションカードエリア */
         .nav-section {
             padding: 40px 0 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* カード同士の間隔 */
         }
 
         .main-entrance-card {
@@ -295,7 +297,7 @@
             </div>
         </div>
 
-        <!-- main.html への導線ボタン -->
+        <!-- 各ページへの導線ボタン -->
         <div class="nav-section">
             <a href="main.html" class="main-entrance-card">
                 <div class="entrance-title">
@@ -303,6 +305,16 @@
                 </div>
                 <div class="entrance-desc">
                     小説家になろう / 個人サイト / note / pixiv / SNS 等
+                </div>
+            </a>
+
+            <!-- 追加：活動履歴へのリンク -->
+            <a href="history.html" class="main-entrance-card">
+                <div class="entrance-title">
+                    活動履歴 <span>→</span>
+                </div>
+                <div class="entrance-desc">
+                    これまでの制作物や参加イベント等の記録
                 </div>
             </a>
         </div>
