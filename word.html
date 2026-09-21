@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用語集 - 霧雨巡録社</title>
+    <!-- 怪しげな雰囲気を醸し出すGoogle Fontsの明朝体（Shippori Mincho）を読み込み -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #050505;
+            color: #d1d5db;
+            /* 基本フォントは読みやすいモダンな明朝体 */
+            font-family: "Shippori Mincho", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.85;
+            box-sizing: border-box;
+            background-image: radial-gradient(circle at 50% 0%, #151b23 0%, #050505 70%);
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        .container {
+            max-width: 960px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* 青白く光るリンク演出 */
+        .glowing-link {
+            color: #b0e0e6;
+            text-shadow: 0 0 5px #7ef9ff, 0 0 12px #00bfff;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px dotted #7ef9ff;
+        }
+
+        .glowing-link:hover {
+            color: #ffffff;
+            text-shadow: 0 0 8px #ffffff, 0 0 18px #7ef9ff, 0 0 25px #00bfff;
+        }
+
+        /* ヘッダー設定 */
+        header {
+            text-align: center;
+            border-bottom: 1px solid #222222;
+            padding: 60px 20px 40px;
+            margin-bottom: 30px;
+            background-image: 
+                linear-gradient(to left, rgba(5, 5, 5, 0.85) 0%, rgba(5, 5, 5, 0.2) 50%, rgba(5, 5, 5, 0.85) 100%),
+                linear-gradient(to bottom, rgba(5, 5, 5, 0.2) 0%, rgba(5, 5, 5, 0.95) 100%),
+                url('IMG_2416.jpeg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+            position: relative;
+            min-height: 220px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: 8px;
+            margin: 0;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.9), 0 2px 8px rgba(0, 0, 0, 1);
+        }
+
+        /* レイアウト */
+        .content-wrap {
+            display: flex;
+            gap: 40px;
+        }
+
+        /* 左側：作品一覧ナビ */
+        nav {
+            width: 220px;
+            flex-shrink: 0;
+            border-right: 1px solid #222222;
+            padding-right: 20px;
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+        }
+
+        .nav-title {
+            font-size: 0.9rem;
+            color: #888888;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #222222;
+            padding-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+        }
+
+        a {
+            color: #9ba8b0;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            border-left: 3px solid #8a9ea7;
+            padding-left: 12px;
+            margin-bottom: 25px;
+            color: #ffffff;
+            letter-spacing: 2px;
+        }
+
+        /* 上部：種類分けフィルタータブ */
+        .filter-tab-wrap {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 35px;
+            border-bottom: 1px solid #222222;
+            padding-bottom: 12px;
+            position: sticky;
+            top: 0;
+            background-color: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 10;
+            padding-top: 10px;
+        }
+
+        .filter-btn {
+            background-color: #111418;
+            color: #9ba8b0;
+            border: 1px solid #2a323d;
+            padding: 8px 18px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: #8a9ea7;
+            color: #ffffff;
+            background-color: #1a212b;
+        }
+
+        .filter-btn.active {
+            background-color: #8a9ea7;
+            color: #050505;
+            border-color: #8a9ea7;
+            font-weight: bold;
+        }
+
+        /* 大カテゴリ（作品名）見出し */
+        .category-header {
+            font-size: 1.25rem;
+            color: #8a9ea7;
+            border-bottom: 1px solid #333333;
+            padding-bottom: 8px;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            scroll-margin-top: 70px;
+        }
+
+        /* 用語カードスタイリング */
+        .keyword-item {
+            background-color: #0c0f13;
+            border: 1px solid #1a202c;
+            border-radius: 6px;
+            padding: 22px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .keyword-item:hover {
+            border-color: #2d3748;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+        }
+
+        .keyword-item.is-hidden {
+            display: none !important;
+        }
+
+        /* 用語の名称（赤字化） */
+        .keyword-name {
+            font-size: 1.25rem;
+            color: #ff4d4d; /* 語句の文字色を鮮やかな赤に */
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px rgba(255, 77, 77, 0.25); /* ほのかな赤く光るエフェクト */
+        }
+
+        .type-badge {
+            font-size: 0.75rem;
+            font-weight: normal;
+            padding: 2px 8px;
+            border-radius: 3px;
+            border: 1px solid #2d3748;
+            color: #8a9ea7;
+            background-color: #141a22;
+            letter-spacing: 0;
+            text-shadow: none;
+        }
+
+        /* 怪しげな雰囲気を出す説明文スタイル */
+        .keyword-desc {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: #c5cbd3;
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        /* 祝詞・民謡などの引用枠 */
+        .quote-box {
+            color: #a0aec0;
+            display: block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            border-left: 2px solid #ff4d4d;
+            background-color: rgba(255, 77, 77, 0.03);
+            font-style: italic;
+            letter-spacing: 0.08em;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 1px solid #222222;
+            font-size: 0.85rem;
+            color: #555555;
+            letter-spacing: 1px;
+        }
+
+        /* レスポンシブ設定 (画面幅768px以下) */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            .content-wrap {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            nav {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #222222;
+                padding-right: 0;
+                padding-bottom: 20px;
+                position: static;
+            }
+
+            nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px 18px;
+            }
+
+            nav li {
+                margin-bottom: 0;
+            }
+
+            .filter-tab-wrap {
+                justify-content: space-between;
+            }
+
+            .filter-btn {
+                flex: 1;
+                text-align: center;
+                padding: 8px 4px;
+                font-size: 0.85rem;
+            }
+
+            .keyword-item {
+                padding: 16px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ヘッダー -->
+    <header>
+        <h1>霧雨巡録社</h1>
+    </header>
+
+    <!-- メインレイアウト -->
+    <div class="content-wrap">
+
+        <!-- 左側：作品選択ナビゲーション -->
+        <nav>
+            <div class="nav-title">【 作品選択 】</div>
+            <ul>
+                <li><a href="#work-atmosphere">ATMOSPHERE</a></li>
+                <li><a href="#work-innutsu">陰鬱な世界を謳歌する</a></li>
+                <li><a href="#work-sankai">散開怪花</a></li>
+                <li><a href="#work-hensachi">偏差値71の妖怪怪異譚</a></li>
+                <li><a href="#work-question">？</a></li>
+                <li style="margin-top: 30px;"><a href="main.html">← 去る</a></li>
+            </ul>
+        </nav>
+
+        <!-- 右側：用語集メインエリア -->
+        <main>
+            <div class="section-title">用語集</div>
+
+            <!-- 上部：種類分けフィルタータブ -->
+            <div class="filter-tab-wrap">
+                <button class="filter-btn active" data-filter="all">すべて</button>
+                <button class="filter-btn" data-filter="character">人物</button>
+                <button class="filter-btn" data-filter="world">世界</button>
+                <button class="filter-btn" data-filter="concept">概念</button>
+            </div>
+
+            <!-- ==========================================
+                 1. ATMOSPHERE
+                 ========================================== -->
+            <h2 id="work-atmosphere" class="category-header">【 ATMOSPHERE 】</h2>
+
+            <div class="keyword-item" data-type="character">
+                <div class="keyword-name">
+                    酒呑童子(しゅてんどうじ)
+                    <span class="type-badge">人物</span>
+                </div>
+                <div class="keyword-desc">
+                    元々は大江山に住み着いている鬼だったが，最近は黄泉の国にいるらしい。性格は頑固で豪傑。腕っぷしだけなら無敗の鬼王。（井の中の蛙，大海を知らず）
+                </div>
+            </div>
+
+            <!-- ==========================================
+                 2. 陰鬱な世界を謳歌する
+                 ========================================== -->
+            <h2 id="work-innutsu" class="category-header">【 陰鬱な世界を謳歌する 】</h2>
+
+            <div class="keyword-item" data-type="character">
+                <div class="keyword-name">
+                    能登まさし（のとまさし）
+                    <span class="type-badge">人物</span>
+                </div>
+                <div class="keyword-desc">
+                    記憶を失っているはずなのに，そこが幻想世界だと気づく頭のおかしな少年。シリーズ全体の中でも稀有なほどに捻くれている。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="world">
+                <div class="keyword-name">
+                    霊安神社（れいあんじんじゃ）
+                    <span class="type-badge">世界</span>
+                </div>
+                <div class="keyword-desc">
+                    歴史ある平安時代からの神社とも、ごく最近にできた神社とも言われる。二十年前の郷土資料には載っていないのに、石造の本殿は明らかに古来からの自然信仰を思わせる。とにかく謎も苔も多い所。参拝者は見かけない。
+                </div>
+            </div>
+
+            <!-- ==========================================
+                 3. 散開怪花
+                 ========================================== -->
+            <h2 id="work-sankai" class="category-header">【 散開怪花 】</h2>
+
+            <div class="keyword-item" data-type="character">
+                <div class="keyword-name">
+                    凪航平（なぎこうへい）
+                    <span class="type-badge">人物</span>
+                </div>
+                <div class="keyword-desc">
+                    伝承に魅入られた不憫な少年。幼馴染の麗花とも上手く馴染めず家庭は崩壊している。ちなみに寝つきが悪い。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="character">
+                <div class="keyword-name">
+                    凪信介（なぎのぶすけ）
+                    <span class="type-badge">人物</span>
+                </div>
+                <div class="keyword-desc">
+                    航平の父親。貸本屋の店長で、雄介とは大学からの付き合いだそうだ。イカれ眼鏡。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="character">
+                <div class="keyword-name">
+                    凪麗花（なぎれいか）
+                    <span class="type-badge">人物</span>
+                </div>
+                <div class="keyword-desc">
+                    麗花か麗華か誰にもわからない。趣味は詐欺と歴史改変と凶悪事件。嫌いなことは真実。最近話題の30代である。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="character">
+                <div class="keyword-name">
+                    凪有希（なぎゆき）
+                    <span class="type-badge">人物</span>
+                </div>
+                <div class="keyword-desc">
+                    小さい頃に交通事故で死んだらしい。最近では、物置に隠れている姿が発見された。かき氷が嫌い。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="character">
+                <div class="keyword-name">
+                    雄介（ゆうすけ）
+                    <span class="type-badge">人物</span>
+                </div>
+                <div class="keyword-desc">
+                    旅行ができる怪鬼道具『ユーフィニティ』の発見者。謎は多く，それと同時に髭も多い。ちなみに蛾にすかれる体質を持っているらしい。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="concept">
+                <div class="keyword-name">
+                    ユーフィニティ
+                    <span class="type-badge">概念</span>
+                </div>
+                <div class="keyword-desc">
+                    雄介が発見した旅行ができる怪鬼道具。一度使うと大抵見失う。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="world">
+                <div class="keyword-name">
+                    白狼神社（はくろうじんじゃ）
+                    <span class="type-badge">世界</span>
+                </div>
+                <div class="keyword-desc">
+                    登尾山の山頂にある神社の一つ。登尾山は古来から霊験あらたかな霊山だったとかなんとかで変な神社が多い。<br>
+                    ちなみに二百年前の御霊会の時に作られた<a href="omikuji.html" class="glowing-link">おみくじ</a>が残っているらしい。紙は湿気に弱いのに。
+                </div>
+            </div>
+
+            <!-- ==========================================
+                 4. 偏差値71の妖怪怪異譚
+                 ========================================== -->
+            <h2 id="work-hensachi" class="category-header">【 偏差値71の妖怪怪異譚 】</h2>
+
+            <div class="keyword-item" data-type="character">
+                <div class="keyword-name">
+                    酒呑童子(しゅてんどうじ)
+                    <span class="type-badge">人物</span>
+                </div>
+                <div class="keyword-desc">
+                    酒と本にまみれた拝殿に供えられた鏡。その裏に居るとか居ないとか。大天狗達に崇められている。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="character">
+                <div class="keyword-name">
+                    伊吹童子(いぶきどうじ)
+                    <span class="type-badge">人物</span>
+                </div>
+                <div class="keyword-desc">
+                    鬼神の頭領。極めて聡明で器も大きい。欠点は鬼に生まれたこと。また、無口なので影が薄い。いや、影が濃すぎるのかも。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="character">
+                <div class="keyword-name">
+                    茨木童子(いばらきどうじ)
+                    <span class="type-badge">人物</span>
+                </div>
+                <div class="keyword-desc">
+                    半身の鬼神。 新参者を嫌うようで、気に入らない奴には死気を送るようだ。見くびれない。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="character">
+                <div class="keyword-name">
+                    荊芥爺(けいがいじい)
+                    <span class="type-badge">人物</span>
+                </div>
+                <div class="keyword-desc">
+                    鬼の里の長老者。最近は物忘れがひどいようで，数百年前の朝に何を食べたかさえ忘れてしまったそうだ。鬼なんて屍人しか食べないだろうに。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="character">
+                <div class="keyword-name">
+                    猫又(ねこまた)
+                    <span class="type-badge">人物</span>
+                </div>
+                <div class="keyword-desc">
+                    尾が三本に分かれた猫ちゃんだけど，性格は荒く，人を見つけると後ろからこっそり忍び寄って食い殺す。三千歳超えの老いぼれ。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="character">
+                <div class="keyword-name">
+                    終焉帝(しゅうえんてい)
+                    <span class="type-badge">人物</span>
+                </div>
+                <div class="keyword-desc">
+                    月浪フェンリルとも言う。ただの荒野にわざわざ国家を建てたお馬鹿さん。ちなみにその場所は月面らしい。また，月浪国家の国王マーナガルムの実の父でもあるようだ。親子揃って体毛が白い。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="character">
+                <div class="keyword-name">
+                    封開(ふうかい)
+                    <span class="type-badge">人物</span>
+                </div>
+                <div class="keyword-desc">
+                    原始帝に使える暴力女。耳が非常に良く、過去の音の残滓まで聴くことができるようだ。性格は短気で極めて凶暴。妖怪のようにしか思えないが、これでも人間なんだってよ。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="concept">
+                <div class="keyword-name">
+                    祝詞言葉
+                    <span class="type-badge">概念</span>
+                </div>
+                <div class="keyword-desc">
+                    どこかの国の祝詞言葉。これを唱えると，悪鬼は興奮し，亡霊は成仏するそうだ。そうだ，全文を載せよう。<br>
+                    <span class="quote-box">
+                        払へ給へ清め給へ神ながら幸い給へ<br>
+                        守り給へ
+                    </span>
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="world">
+                <div class="keyword-name">
+                    魔碑（まひ）
+                    <span class="type-badge">世界</span>
+                </div>
+                <div class="keyword-desc">
+                    最も巡礼するのが難しいとされる筋金付きの心霊スポット。なんと月面にあるらしい。目撃証言は極めて少なく、どんな物かさえ世に回っていない。
+                </div>
+            </div>
+
+            <!-- ==========================================
+                 5. ？
+                 ========================================== -->
+            <h2 id="work-question" class="category-header">【 ？ 】</h2>
+
+            <div class="keyword-item" data-type="concept">
+                <div class="keyword-name">
+                    七人の雲
+                    <span class="type-badge">概念</span>
+                </div>
+                <div class="keyword-desc">
+                    悪霊跋扈の時代に空を総べていた７人の偉大な神格。しかし最近はそうでもないと言う。代名詞は陰の豪雷。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="character">
+                <div class="keyword-name">
+                    黒羽（くろは）
+                    <span class="type-badge">人物</span>
+                </div>
+                <div class="keyword-desc">
+                    誰かだけが知っている名前。塵の子でも砂の子でもない奴だという旨の内容を誰かが言っていたのを聞いたことがある。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="concept">
+                <div class="keyword-name">
+                    祝詞言葉
+                    <span class="type-badge">概念</span>
+                </div>
+                <div class="keyword-desc">
+                    どこかの国の祝詞言葉。これを唱えると，悪鬼は興奮し，亡霊は成仏するそうだ。そうだ，全文を載せよう。<br>
+                    <span class="quote-box">
+                        傾げても畏め 黒羽の大神<br>
+                        世の空の下に消える世の歪み<br>
+                        禊ぎ祓へ給いし時に 成りませる単一の魂<br>
+                        諸々の禍事、罰、穢れ あらむをば<br>
+                        求め追い抜き貫き給へと 申すことを求めんと<br>
+                        畏み畏み申す
+                    </span>
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="concept">
+                <div class="keyword-name">
+                    怪異譚？ A.陰鬱な花が開いたのです
+                    <span class="type-badge">概念</span>
+                </div>
+                <div class="keyword-desc">
+                    黒羽録の正史の二つ名だそうだ。おどろおどろしい世界観に反し，二つ名自体ははっちゃけている。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="concept">
+                <div class="keyword-name">
+                    夕日ヶ丘の民謡（ゆうひがおかのみんよう）
+                    <span class="type-badge">概念</span>
+                </div>
+                <div class="keyword-desc">
+                    地元では夕日が落ちる山として有名な香陽山のふもとで最初に歌われた民謡。最初に詠ったのは地元の俳諧師である、能登権左武郎（のとごんざぶろう）と伝えられている。ここに全文を載せる。<br>
+                    <span class="quote-box">
+                        夕焼け小焼けの夕空に<br>
+                        ススキを握る童子の背<br>
+                        転がる石に動かない石<br>
+                        時は過ぐれど日は帰らず<br>
+                        かくて老は郷を思う
+                    </span>
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="world">
+                <div class="keyword-name">
+                    宵の彼岸（よいのひがん）
+                    <span class="type-badge">世界</span>
+                </div>
+                <div class="keyword-desc">
+                    自殺の名所だった場所。白波の飛沫がかかる崖の上には彼岸花が咲いていて、近年ではそれを売りに観光地化された。<br>
+                    しかし人の往来が増え自殺を図る人が減った途端、咲く花の数は急激に減った。自殺者の魂を養分にしていたからという説もあるが、このままでは観光客が訪れなくなってしまう。<br>
+                    町おこしの観点から東野町長は次にどのような行動をとるのだろう。<br><br>
+                    <a href="photo.html" class="glowing-link">［写真を見る］</a>
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="concept">
+                <div class="keyword-name">
+                    黒羽録（こくうろく）
+                    <span class="type-badge">概念</span>
+                </div>
+                <div class="keyword-desc">
+                    暮葉畏啓の手掛ける一連の作品群の総称。独自の都市伝説、妖怪怪異、世界観が展開される。
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer>
+        <p>&copy; 霧雨巡録社 / 暮葉畏啓 Together with the Drizzle</p>
+    </footer>
+
+</div>
+
+<!-- フィルタリング制御スクリプト -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const items = document.querySelectorAll('.keyword-item');
+        const categories = document.querySelectorAll('.category-header');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                // アイテムの表示切替
+                items.forEach(item => {
+                    const itemType = item.getAttribute('data-type');
+                    if (filterValue === 'all' || itemType === filterValue) {
+                        item.classList.remove('is-hidden');
+                    } else {
+                        item.classList.add('is-hidden');
+                    }
+                });
+
+                // 表示アイテムがない作品の見出し（h2）を隠す処理
+                categories.forEach(cat => {
+                    let next = cat.nextElementSibling;
+                    let hasVisibleItem = false;
+
+                    while (next && !next.classList.contains('category-header')) {
+                        if (next.classList.contains('keyword-item') && !next.classList.contains('is-hidden')) {
+                            hasVisibleItem = true;
+                            break;
+                        }
+                        next = next.nextElementSibling;
+                    }
+
+                    if (hasVisibleItem || filterValue === 'all') {
+                        cat.style.display = '';
+                    } else {
+                        cat.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
