@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>黒羽録 - 隠されたページ</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #000000;
+      color: #8b0000;
+      font-family: "serif", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 最上部：雲霧巡庵 画像領域 */
+    .header-image-container {
+      width: 100%;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .header-image-container img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* 文章エリア */
+    .text-section {
+      width: 100%;
+      font-size: 1.5rem;
+      letter-spacing: 0.15em;
+      line-height: 2;
+      margin-bottom: 60px;
+      color: #7a0000;
+      text-shadow: 0 0 3px #300000;
+    }
+
+    .line-left {
+      text-align: left;
+    }
+
+    .line-right {
+      text-align: right;
+    }
+
+    /* 画像ギャラリー（シンプルに縦に貼るだけ） */
+    .gallery {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* 画像追加用のシンプルなファイル入力UI（必要に応じて利用） */
+    .upload-section {
+      margin-top: 60px;
+      padding: 20px 0;
+      border-top: 1px solid #300000;
+      text-align: center;
+    }
+
+    .upload-btn {
+      background: transparent;
+      border: 1px solid #660000;
+      color: #8b0000;
+      padding: 10px 20px;
+      font-family: inherit;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .upload-btn:hover {
+      background: #200000;
+    }
+
+    #image-input {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- 最上部：雲霧巡庵（画像） -->
+    <div class="header-image-container" id="header-container">
+      <!-- 撮影した画像（雲霧巡庵）のファイル名に書き換えてください -->
+      <img src="kumokiri.jpg" alt="雲霧巡庵">
+    </div>
+
+    <!-- 文章部分 -->
+    <div class="text-section">
+      <div class="line-left">凋落の森へよおこそ。</div>
+      <div class="line-right">宿痾の河でごゆっくり</div>
+    </div>
+
+    <!-- 写真をそのまま並べるエリア -->
+    <div class="gallery" id="gallery">
+      <!-- ここに撮影した画像を貼っていきます -->
+      <img src="photo1.jpg" alt="">
+      <img src="photo2.jpg" alt="">
+      <img src="photo3.jpg" alt="">
+    </div>
+
+    <!-- ローカルで画像を選択して一時追加するエリア -->
+    <div class="upload-section">
+      <button class="upload-btn" onclick="document.getElementById('image-input').click()">写真を追加選択する</button>
+      <input type="file" id="image-input" accept="image/*" multiple onchange="addImages(event)">
+    </div>
+  </div>
+
+  <script>
+    function addImages(event) {
+      const files = event.target.files;
+      const gallery = document.getElementById('gallery');
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          gallery.appendChild(img);
+        };
+
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+</body>
+</html>
