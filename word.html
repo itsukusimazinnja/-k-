@@ -273,6 +273,24 @@
             text-shadow: 0 0 1px rgba(255, 255, 255, 0.1);
         }
 
+        /* 屈露拝禊専用スタイル */
+        .dark-red-text {
+            color: #a32d2d !important;
+            text-shadow: none !important;
+        }
+
+        .dark-yellow-link {
+            color: #c29b2b;
+            text-decoration: none;
+            font-weight: bold;
+            transition: opacity 0.2s ease;
+        }
+
+        .dark-yellow-link:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
         /* 祝詞・民謡などの引用枠 */
         .quote-box {
             color: #a0aec0;
@@ -616,11 +634,11 @@
 
             <div class="keyword-item" data-type="character">
                 <div class="keyword-name">
-                    黒羽（くろは）
+                    石羽神
                     <span class="type-badge">人物</span>
                 </div>
                 <div class="keyword-desc">
-                    誰かだけが知っている名前。塵の子でも砂の子でない奴だという旨の内容を誰かが言っていたのを聞いたことがある。
+                   空の子。薄明の季に神留まりあそばした。
                 </div>
             </div>
 
@@ -703,6 +721,18 @@
                 </div>
                 <div class="keyword-desc">
                     暮葉畏啓の手掛ける一連の作品群の総称。独自の都市伝説、妖怪怪異、世界観が展開される。
+                </div>
+            </div>
+
+            <div class="keyword-item" data-type="world">
+                <div class="keyword-name dark-red-text">
+                    屈露拝禊
+                    <span class="type-badge">世界</span>
+                </div>
+                <div class="keyword-desc dark-red-text">
+                    源所を記し、石雨録を編纂した皇。<br>
+                    薄明の季に御隠れあそばした。<br>
+                    <a href="back.html" class="dark-yellow-link">神牒</a>
                 </div>
             </div>
 
