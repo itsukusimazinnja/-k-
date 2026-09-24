@@ -29,7 +29,7 @@
       flex-direction: column;
     }
 
-    /* 最上部：雲霧巡庵 画像領域 */
+    /* 最上部：タイトル画像領域 */
     .header-image-container {
       width: 100%;
       margin-bottom: 50px;
@@ -78,40 +78,14 @@
       display: block;
       object-fit: contain;
     }
-
-    /* 画像追加用のシンプルなファイル入力UI */
-    .upload-section {
-      margin-top: 60px;
-      padding: 20px 0;
-      border-top: 1px solid #300000;
-      text-align: center;
-    }
-
-    .upload-btn {
-      background: transparent;
-      border: 1px solid #660000;
-      color: #8b0000;
-      padding: 10px 20px;
-      font-family: inherit;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-
-    .upload-btn:hover {
-      background: #200000;
-    }
-
-    #image-input {
-      display: none;
-    }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- 最上部：雲霧巡庵（画像） -->
+    <!-- 最上部：タイトル画像 -->
     <div class="header-image-container" id="header-container">
-      <img src="kumokiri.jpg" alt="雲霧巡庵">
+      <img src="IMG_2979.jpeg" alt="IMG_2979">
     </div>
 
     <!-- 文章部分 -->
@@ -120,39 +94,13 @@
       <div class="line-right">宿痾の河でごゆっくり</div>
     </div>
 
-    <!-- 写真をそのまま並べるエリア -->
+    <!-- 写真をそのまま並べるエリア（残りの3枚） -->
     <div class="gallery" id="gallery">
       <img src="IMG_2975.jpeg" alt="IMG_2975">
       <img src="IMG_2976.jpeg" alt="IMG_2976">
       <img src="IMG_2978.jpeg" alt="IMG_2978">
-      <img src="IMG_2979.jpeg" alt="IMG_2979">
-    </div>
-
-    <!-- ローカルで画像を選択して一時追加するエリア -->
-    <div class="upload-section">
-      <button class="upload-btn" onclick="document.getElementById('image-input').click()">写真を追加選択する</button>
-      <input type="file" id="image-input" accept="image/*" multiple onchange="addImages(event)">
     </div>
   </div>
 
-  <script>
-    function addImages(event) {
-      const files = event.target.files;
-      const gallery = document.getElementById('gallery');
-
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-          const img = document.createElement('img');
-          img.src = e.target.result;
-          gallery.appendChild(img);
-        };
-
-        reader.readAsDataURL(file);
-      }
-    }
-  </script>
 </body>
 </html>
