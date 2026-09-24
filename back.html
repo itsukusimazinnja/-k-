@@ -41,6 +41,7 @@
       height: auto;
       display: block;
       margin: 0 auto;
+      object-fit: contain;
     }
 
     /* 文章エリア */
@@ -70,13 +71,15 @@
       gap: 40px;
     }
 
+    /* トリミングせず全貌を表示するためのスタイル */
     .gallery img {
       width: 100%;
       height: auto;
       display: block;
+      object-fit: contain;
     }
 
-    /* 画像追加用のシンプルなファイル入力UI（必要に応じて利用） */
+    /* 画像追加用のシンプルなファイル入力UI */
     .upload-section {
       margin-top: 60px;
       padding: 20px 0;
@@ -108,7 +111,6 @@
   <div class="container">
     <!-- 最上部：雲霧巡庵（画像） -->
     <div class="header-image-container" id="header-container">
-      <!-- 撮影した画像（雲霧巡庵）のファイル名に書き換えてください -->
       <img src="kumokiri.jpg" alt="雲霧巡庵">
     </div>
 
@@ -120,10 +122,10 @@
 
     <!-- 写真をそのまま並べるエリア -->
     <div class="gallery" id="gallery">
-      <!-- ここに撮影した画像を貼っていきます -->
-      <img src="photo1.jpg" alt="">
-      <img src="photo2.jpg" alt="">
-      <img src="photo3.jpg" alt="">
+      <img src="IMG_2975.jpeg" alt="IMG_2975">
+      <img src="IMG_2976.jpeg" alt="IMG_2976">
+      <img src="IMG_2978.jpeg" alt="IMG_2978">
+      <img src="IMG_2979.jpeg" alt="IMG_2979">
     </div>
 
     <!-- ローカルで画像を選択して一時追加するエリア -->
